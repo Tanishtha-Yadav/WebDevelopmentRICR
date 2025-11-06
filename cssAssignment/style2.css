@@ -1,0 +1,53 @@
+body{
+    background-color: blue;
+}
+
+#box{
+    background-color: white;
+    width: 380px;
+    height: 420px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 50px auto;
+}
+#heading{
+    text-align: left;
+}
+
+.formField {
+  width: 360px;         
+  margin-top: 15px;
+  text-align: left;
+}
+
+.formField input {
+  width: 360px;      
+  height: 20px;
+  padding: 8px;
+}
+
+
+#terms {
+    margin-top: 10px ;
+  font-size: x-small;
+  text-align: left;
+}
+#register
+{
+    background-color: blue;
+    width: 350px;
+    height: 40px;
+    margin-top: 15px;
+    color: white;
+}
+
+
+#account{
+    font-size: xx-small;
+}
+#logIn{
+    color: blue;
+    font-size: xx-small;
+}
+

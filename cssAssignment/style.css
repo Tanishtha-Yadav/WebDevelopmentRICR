@@ -1,0 +1,61 @@
+body{
+    background-color: blue;
+}
+
+#box{
+    background-color: white;
+    
+    width: 350px;
+    height: 300px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 50px auto;
+}
+#heading{
+    text-align: left;
+}
+
+#email{
+    width: 350px;
+    height: 30px;
+    margin-top: 5px;
+    text-align: left;
+}
+#password{
+    width: 350px;
+    height: 30px;
+    margin-top: 5px;
+    text-align: left;
+
+}
+
+#login
+{
+    background-color: blue;
+    width: 350px;
+    height: 40px;
+    margin-top: 5px;
+    color: white;
+}
+
+#remember {
+  font-size: x-small;
+  text-align: left;
+  margin-top: 10px;
+}
+
+#forgot {
+  margin-left: 130px;
+  font-size: x-small;
+  color: blue;
+}
+
+#signUp{
+    color: blue;
+    font-size: xx-small;
+}
+
+#account{
+    font-size: xx-small;
+}
