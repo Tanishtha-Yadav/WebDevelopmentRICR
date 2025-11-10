@@ -1,0 +1,90 @@
+h1 {
+  width: 200px;
+  border: 1px solid black;
+  margin-left: 0px;
+}
+h1:hover {
+  margin-left: 200px;
+  transition: margin-left 5s; /* swipes left*/
+  /* width: 400px;
+  transition: width 5s; */ /* width grows
+  /* color: red;
+  transition: color 5s; */ /*color change according to time*/
+}
+
+#blk1 {
+  border: 1px solid black;
+  height: 50px;
+  width: 50%;
+  #blk2 {
+    height: 50px;
+    width: 1%;
+    background-color: orange;
+  }
+}
+
+#blk1:hover {
+  #blk2 {
+    width: 100%;
+    background-color: rgb(128, 0, 34);
+    transition: width 5s ease-in-out, background-color 5s ease-in-out;
+  }
+}
+
+#D1 {
+  border: 1px solid black;
+  width: fit-content;
+  /* position: relative; */
+  #d1 {
+    display: none;
+    /* position: absolute; */
+  }
+}
+
+#D2:hover {
+  #d1 {
+    display: block;
+  }
+}
+
+#blk3 {
+  border: 1px solid black;
+  height: 50px;
+  width: 50%;
+  #blk4 {
+    height: 50px;
+  }
+}
+
+#blk3:hover {
+  #blk4 {
+    animation: myAnimation 5s linear;
+  }
+}
+
+@keyframes myAnimation {
+  0% {
+    width: 0%;
+    background-color: red;
+  }
+  50% {
+    width: 50%;
+    background-color: blue;
+  }
+  100% {
+    width: 100%;
+    background-color: green;
+  }
+}
+
+#t1 {
+  height: 25px;
+  width: fit-content;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+#t1:hover {
+  transform: rotateY(180deg);
+  transition: transform 2s;
+}
