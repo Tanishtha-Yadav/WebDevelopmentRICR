@@ -13,6 +13,7 @@
   display: flex;
   gap: 40px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 #block {
@@ -21,6 +22,7 @@
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 #signIn {
@@ -31,6 +33,10 @@
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+#signIn:hover {
+  background-color: lightgray;
 }
 
 .main {
@@ -45,9 +51,14 @@
 #welcome {
   flex: 1;
   max-width: 600px;
+  span {
+    font-size: small;
+  }
   a {
     color: grey;
+    font-size: small;
     text-decoration: underline;
+    cursor: pointer;
   }
 
   input {
@@ -55,7 +66,9 @@
     border-radius: 6px;
     border: 1px solid;
     width: 250px;
-    margin-right: 10px;
+    margin-top: 5px;
+    margin-right: 8px;
+    margin-bottom: 0;
   }
 
   button {
@@ -68,6 +81,15 @@
     cursor: pointer;
     font-weight: 600;
   }
+
+  p {
+    color: gray;
+    font-size: large;
+  }
+}
+
+#welcome h1 {
+  font-size: xx-large;
 }
 
 #email {
@@ -81,6 +103,12 @@
   object-fit: cover;
 }
 
+#logoTop {
+  margin-top: 100px;
+  font-size: medium;
+  text-align: center;
+}
+
 .logo {
   display: flex;
   flex-wrap: wrap;
@@ -91,24 +119,14 @@
   background-color: white;
 }
 
-.logo img:hover {
-  transform: scale(1.5);
-}
-
-#logoTop {
-  font-size: medium;
-  text-align: center;
-}
-
 #skill {
-  margin: 50px;
+  margin: 25px;
   text-align: center;
   font-size: medium;
-}
-
-#skillHead {
-  font-size: xx-large;
-  text-align: center;
+  h2 {
+    font-size: xx-large;
+    text-align: center;
+  }
 }
 
 #skillPara {
@@ -140,7 +158,11 @@
   text-align: center;
   margin: 50px;
   p {
-    font-size: medium;
+    margin-top: 20px;
+    margin-left: 300px;
+    margin-right: 300px;
+    padding: 10px;
+    font-size: large;
     text-align: center;
     color: grey;
   }
@@ -162,12 +184,13 @@
   }
 
   button {
-    height: 30px;
+    height: 40px;
     width: 110px;
+    font-size: x-small;
     background-color: black;
     color: white;
     font-weight: bold;
-    border-radius: 2px;
+    border-radius: 8px;
     border: none;
   }
 }
@@ -182,6 +205,10 @@
 }
 
 #resume {
+  p {
+    color: gray;
+    font-size: 18px;
+  }
   button {
     font-size: small;
     color: black;
@@ -226,33 +253,183 @@
   text-align: center;
   margin-top: 100px;
   p {
-    font-size: x-large;
+    font-size: large;
     color: gray;
   }
 }
 
-#mobile {
-}
-
-#contact {
-  text-align: center;
+#appDevelopment {
+  display: flex;
   margin-top: 100px;
-  h1{
-    font-size: 60px; 
+  margin-left: 155px;
+  margin-right: 155px;
+  gap: 190px;
+  h1 {
+    font-size: xx-large;
   }
-  p{
+  p {
     color: gray;
-    font-size: x-large;
+    font-size: large;
   }
+
+  img {
+    border-radius: 20px;
+    width: 350px;
+  }
+
+  span {
+    color: gray;
+  }
+
+  #p1 {
+    margin-bottom: 0px;
+    color: black;
+    font-weight: bold;
+  }
+}
+
+#profileRow {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  img {
+    height: 50px;
+    width: fit-content;
+    border-radius: 5px;
+    opacity: 50%;
+  }
+}
+
+#profileRow:hover {
+  img {
+    opacity: 100%;
+  }
+}
+
+.divider {
+  display: inline-block;
+  width: 2px;
+  height: 50px;
+  background-color: rgb(209, 205, 205);
+}
+
+#contactUs {
+  text-align: center;
+  margin-top: 150px;
+  h1 {
+    font-size: xx-large;
+  }
+  p {
+    color: gray;
+    font-size: large;
+  }
+}
+
+#contactInfo {
+  margin-top: 100px;
+  border: 1px solid whitesmoke;
+  box-shadow: 2px 2px 2px gray;
+  border-radius: 10px;
+  display: flex;
+  gap: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 20px;
+  margin-bottom: 300px;
+}
+
+#info {
+  border: 1px solid black;
+  padding: 80px;
+  border-radius: 10px;
+  height: 400px;
+  width: 500px;
+  color: white;
+  background-color: black;
+  p {
+    color: gray;
+    margin-bottom: 50px;
+  }
+}
+
+#form {
+  label {
+    color: skyblue;
+  }
+
+  input {
+    border: none;
+    border-bottom: 1px solid skyblue;
+    margin-top: 20px;
+    width: 300px;
+  }
+  button {
+    color: white;
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 500px;
+    margin-top: 100px;
+  }
+}
+
+#form:hover {
+  button {
+    box-shadow: 2px 2px 2px gray;
+  }
+}
+
+#nameField {
+  display: flex;
+  gap: 30px;
+}
+
+#emailField {
+  margin-top: 25px;
+  input {
+    width: 635px;
+  }
+}
+
+#intrested {
+  margin-top: 25px;
+  input {
+    width: 50px;
+    align-items: left;
+  }
+  span {
+    font-size: large;
+  }
+}
+
+#textBox {
+  margin-top: 30px;
+  textarea {
+    border: none;
+    border-bottom: 1px solid skyblue;
+    margin-top: 40px;
+    width: 635px;
+  }
+}
+
+#linkss {
+  display: flex;
+  gap: 40px;
+  font-size: large;
+  cursor: pointer;
 }
 
 #footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.207);
+  margin-left: 20px;
+  margin-right: 20px;
   border-radius: 1px;
   background: white;
   padding: 30px 10px;
   text-align: center;
   display: flex;
-  gap: 200px;
+  align-items: flex-end;
+  gap: 150px;
   bottom: 0;
 }
 
@@ -269,12 +446,15 @@
 .footer2 {
   color: grey;
   font-size: 16px;
+  margin-top: 12px;
 }
 
 #subscribe {
   background: black;
   color: white;
+  font-weight: bold;
   border: none;
   padding: 8px 16px;
   border-radius: 5px;
+  margin-top: -10px;
 }
