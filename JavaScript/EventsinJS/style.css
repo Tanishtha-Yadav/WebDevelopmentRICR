@@ -1,0 +1,26 @@
+#bulb
+{
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: fit-content;
+}
+
+button{
+    margin: 10px;
+}
+
+#smartBulb
+{
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.on{
+    background-color: yellow;
+}
