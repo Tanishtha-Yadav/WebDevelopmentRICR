@@ -21,7 +21,7 @@
         height: 100vh;
       }
       .calculator {
-        width: 350px;
+        width: 280px;
         background: black;
         padding: 20px;
         border-radius: 20px;
@@ -55,65 +55,101 @@
   </head>
   <body>
     <div class="calculator">
-      <input type="text" id="display" readonly />
+      <input type="text" id="display" placeholder="0" />
 
       <div class="row g-2">
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(7)">7</button>
+          <button class="btn btn-light w-100" id="seven" onclick="bt('7')">
+            7
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(8)">8</button>
+          <button class="btn btn-light w-100" id="eight" onclick="bt('8')">
+            8
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(9)">9</button>
+          <button class="btn btn-light w-100" id="nine" onclick="bt('9')">
+            9
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button('/')">/</button>
-        </div>
-
-        <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(4)">4</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(5)">5</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(6)">6</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button('*')">*</button>
+          <button class="btn btn-light w-100" id="divide" onclick="bt('/')">
+            /
+          </button>
         </div>
 
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(1)">1</button>
+          <button class="btn btn-light w-100" id="four" onclick="bt('4')">
+            4
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(2)">2</button>
+          <button class="btn btn-light w-100" id="five" onclick="bt('5')">
+            5
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(3)">3</button>
+          <button class="btn btn-light w-100" id="six" onclick="bt('6')">
+            6
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button('-')">-</button>
+          <button class="btn btn-light w-100" id="multiply" onclick="bt('*')">
+            *
+          </button>
+        </div> 
+
+        <div class="col-3">
+          <button class="btn btn-light w-100" id="one" onclick="bt('1')">
+            1
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-light w-100" id="two" onclick="bt('2')">
+            2
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-light w-100" id="three" onclick="bt('3')">
+            3
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-light w-100" id="subtract" onclick="bt('-')">
+            -
+          </button>
         </div>
 
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button('.')">.</button>
+          <button class="btn btn-light w-100" id="point" onclick="bt('.')">
+            .
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button(0)">0</button>
+          <button class="btn btn-light w-100" id="zero" onclick="bt('0')">
+            0
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-light w-100" onclick="button('+')">+</button>
+          <button class="btn btn-light w-100" id="add" onclick="bt('+')">
+            +
+          </button>
         </div>
         <div class="col-3">
-          <button class="btn btn-danger clear-btn w-100" onclick="clear()">
+          <button
+            class="btn btn-danger clear-btn w-100"
+            id="clear"
+            onclick="bt('clear')"
+          >
             C
           </button>
         </div>
 
         <div class="col-12">
-          <button class="btn equal-btn w-100" onclick="cal()">=</button>
+          <button class="btn equal-btn w-100" id="equal" onclick="bt('=')">
+            =
+          </button>
         </div>
       </div>
     </div>
