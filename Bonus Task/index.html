@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="bg-primary">
+      <div
+        class="container px-3 py-2 text-center fw-bold display-6 text-light mb-3"
+      >
+        State Locator
+      </div>
+    </header>
+
+    <main>
+      <div class="container d-flex gap-3">
+        <select
+          id="search"
+          class="p-2 d-inline-block"
+          aria-label="Select State"
+          onchange="search()"
+        >
+          <option value="select">--Select State--</option>
+          <option value="Andhra Pradesh-Capital:Amaravati">
+            Andhra Pradesh
+          </option>
+          <option value="Arunachal Pradesh-Capital:Itanagar">
+            Arunachal Pradesh
+          </option>
+          <option value="Assam-Capital:Dispur">Assam</option>
+          <option value="Bihar-Capital:Patna">Bihar</option>
+          <option value="Chhattisgarh-Capital:Raipur">Chhattisgarh</option>
+          <option value="Delhi-Capital:New Delhi">Delhi</option>
+          <option value="Goa-Capital:Panaji">Goa</option>
+          <option value="Gujarat-Capital:Gandhinagar">Gujarat</option>
+          <option value="Haryana-Capital:Chandigarh">Haryana</option>
+          <option value="Himachal Pradesh-Capital:Shimla">
+            Himachal Pradesh
+          </option>
+          <option value="Jammu and Kashmir-Capital: Srinagar">
+            Jammu and Kashmir
+          </option>
+          <option value="Jharkhand-Capital:Ranchi">Jharkhand</option>
+          <option value="Karnataka-Capital:Bengaluru">Karnataka</option>
+          <option value="Kerala-Capital:Thiruvananthapuram">Kerala</option>
+          <option value="Ladakh-Capital:Leh">Ladakh</option>
+          <option value="Madhya Pradesh-Capital:Bhopal">Madhya Pradesh</option>
+          <option value="Maharashtra-Capital:Mumbai">Maharashtra</option>
+          <option value="Manipur-Capital:Imphal">Manipur</option>
+          <option value="Meghalaya-Capital:Shillong">Meghalaya</option>
+          <option value="Mizoram-Capital:Aizawl">Mizoram</option>
+          <option value="Nagaland-Capital:Kohima">Nagaland</option>
+          <option value="Odisha-Capital:Bhubaneswar">Odisha</option>
+          <option value="Punjab-Capital:Chandigarh">Punjab</option>
+          <option value="Rajasthan-Capital:Jaipur">Rajasthan</option>
+          <option value="Sikkim-Capital:Gangtok">Sikkim</option>
+          <option value="Tamil Nadu-Capital:Chennai">Tamil Nadu</option>
+          <option value="Telangana-Capital:Hyderabad">Telangana</option>
+          <option value="Tripura-Capital:Agartala">Tripura</option>
+          <option value="Uttar Pradesh-Capital:Lucknow">Uttar Pradesh</option>
+          <option value="Uttarakhand-Capital:Dehradun">Uttarakhand</option>
+          <option value="West Bengal-Capital:Kolkata">West Bengal</option>
+        </select>
+        <button class="btn btn-warning" onclick="clearAll()">Clear All</button>
+      </div>
+
+      <div
+        class="text-center mt-3"
+        id="Map"
+        style="position: relative; display: inline-block"
+      >
+        <img src="Map.jpg" alt="" width="550px" height="600px" id="mapImg" />
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
