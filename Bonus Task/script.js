@@ -1,7 +1,26 @@
+let soundEnabled = true;
+
+function playSound() {
+  if (soundEnabled) {
+    document.getElementById("flagSound").play();
+  }
+}
+
+function playRemoveSound() {
+  if (soundEnabled) {
+    document.getElementById("removeSound").play();
+  }
+}
+
 function search() {
   const state = document.getElementById("search").value;
   if (state === "select") return;
 
+  placeFlag(state);
+  playSound();
+}
+
+function placeFlag(state) {
   const map = document.getElementById("Map");
 
   const flag = document.createElement("img");
@@ -54,8 +73,37 @@ function search() {
   map.appendChild(flag);
 }
 
+function addAllFlags() {
+  clearAll();
+
+  const states = document.getElementById("search").options;
+
+  for (let i = 1; i < states.length; i++) {
+    placeFlag(states[i].value);
+  }
+
+  playSound();
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+
+  const icon = document.getElementById("soundIcon");
+
+  if (soundEnabled) {
+    icon.className = "bi bi-volume-up-fill";
+  } else {
+    icon.className = "bi bi-volume-mute-fill";
+  }
+}
+
 function clearAll() {
   const flags = document.querySelectorAll(".flag");
+
+  if (flags.length > 0) {
+    playRemoveSound();
+  }
+
   flags.forEach((flag) => flag.remove());
 
   document.getElementById("search").value = "select";
