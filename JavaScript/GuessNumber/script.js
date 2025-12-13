@@ -12,14 +12,14 @@ function Check() {
   if (guess > randomNum) {
     document.getElementById(
       "result"
-    ).innerHTML = `SORRY!!! TRY A SMALLER NUMBER.`;
+    ).innerHTML = `SORRY! TRY A SMALLER NUMBER.`;
   } else if (guess < randomNum) {
     document.getElementById(
       "result"
-    ).innerHTML = `SORRY!!! TRY A LARGER NUMBER.`;
+    ).innerHTML = `SORRY! TRY A LARGER NUMBER.`;
   } else {
     document.getElementById(
       "result"
-    ).innerHTML = `CONGRATULATIONS!!! YOU GUESSED IT RIGHT!`;
+    ).innerHTML = `CONGRATULATIONS! YOU GUESSED IT RIGHT!`;
   }
 }
