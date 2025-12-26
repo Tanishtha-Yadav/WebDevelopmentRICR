@@ -1,9 +1,7 @@
-#head
-{
+#head {
   color: red;
 }
 
-body 
-{
-  background-color: aquamarine;
+body {
+  background-color: blanchedalmond !important;
 }
