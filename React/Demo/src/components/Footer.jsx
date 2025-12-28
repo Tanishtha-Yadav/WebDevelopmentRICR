@@ -5,7 +5,7 @@ const Footer = () => {
     <>
       <div className="bg-success-subtle text-end p-3  ">
         <span>All rights reserved</span>
-        <span>copyright</span>
+        <span> Copyright</span>
         <br />
         <span>Made by Tanishtha❤️</span>
       </div>

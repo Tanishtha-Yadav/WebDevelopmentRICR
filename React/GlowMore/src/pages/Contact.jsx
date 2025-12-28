@@ -3,7 +3,7 @@ import React from "react";
 const Contact = () => {
   return (
     <>
-      <div className="bg-blue-300 p-4">Contact</div>
+      <div className="bg-amber-100 p-56 text-center">Contact</div>
     </>
   );
 };

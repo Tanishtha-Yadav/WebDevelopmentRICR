@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <div className="d-flex justify-content-between p-3 bg-info text-light text-center">
-        <h1 id="head">
+      <div className="d-flex justify-content-between bg-info text-light text-center">
+        <h1 className="text-white">
           <i className="bi bi-app-indicator"> </i>My Website
         </h1>
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-3 mt-3">
           <Link to={"/"} className="text-decoration-none text-light">
             Home
           </Link>
