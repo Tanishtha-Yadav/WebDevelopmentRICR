@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Product from "./pages/Product";
 import Contact from "./pages/Contact";
+import Login from "./pages/login";
+import Registration from "./pages/registration";
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />} />
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/Login" element={<Login/>}/>
+          <Route path="/Registration" element={<Registration/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>

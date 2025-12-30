@@ -5,10 +5,12 @@ import { IoIosInformationCircle } from "react-icons/io";
 import { AiFillProduct } from "react-icons/ai";
 import { MdContacts } from "react-icons/md";
 import { TbBrush } from "react-icons/tb";
+import { RiShoppingCartLine } from "react-icons/ri";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <div className="flex justify-between bg-green-800 text-yellow-100 p-4 ">
+    <div className="flex justify-between bg-black text-white p-4 ">
       <h1 className="flex items-center gap-1 font-bold">
         <TbBrush />
         GlowMore<span className="text-sm">--By Tanishtha</span>
@@ -29,6 +31,15 @@ const Header = () => {
         </Link>
         <Link to={"/contact"} className="flex items-center gap-1">
           <MdContacts /> Contact
+        </Link>
+        <Link to={""} className="flex items-center gap-1 mx-3">
+          <RiShoppingCartLine />
+        </Link>
+        <Link to={"/Login"} className="flex items-center gap-1 mx-3">
+          <FaRegUserCircle />
+        </Link>
+        <Link to={"/Registration"} className="bg-white text-black rounded p-2 hover:bg-black hover:text-white">
+          <button>Sign up</button>
         </Link>
       </div>
     </div>

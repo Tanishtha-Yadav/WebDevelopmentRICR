@@ -3,7 +3,15 @@ import React from "react";
 const About = () => {
   return (
     <>
-      <div className="bg-amber-100 p-56 text-center">About</div>
+      <div>
+        <div className="bg-white text-center"></div>
+        <div>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzLWo8qY8JUfvTgr6hPNiodrgIzKd-PgvtgA&s"
+            alt="image"
+          />
+        </div>
+      </div>
     </>
   );
 };
