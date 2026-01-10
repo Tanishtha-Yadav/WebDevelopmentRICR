@@ -16,6 +16,13 @@ app.get("/", (req, res) => {
   res.json({ message: "Successfully" });
 });
 
+app.use((err, req, res, next) => {
+  const ErrorMessage = err.message || "internal server error";
+  const StatusCode = err.statusCode || 500;
+
+  res.stutus(StatusCode).json({ message: ErrorMessage });
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log("server started at port", port);
