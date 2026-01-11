@@ -1,31 +1,27 @@
 import User from "../models/userModel.js";
+
 export const UserRegister = async (req, res, next) => {
   try {
     const { fullName, email, phone, password } = req.body;
 
     if (!fullName || !email || !phone || !password) {
-      const error = new Error("All Fields Required");
+      const error = new Error("All Fields Required!");
       error.statusCode = 400;
       return next(error);
     }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      const error = new Error("Email already exists");
+      const error = new Error("Email already exists!");
       error.statusCode = 409;
       return next(error);
     }
 
-    const newUser = await User.create({
-      fullName,
-      email,
-      phone,
-      password,
-    });
+    const newUser = await User.create({ fullName, email, phone, password });
 
     console.log(newUser);
 
-    res.status(201).json({ message: "User Created Succesfully" });
+    res.status(201).json({ message: "User Created Successfully!" });
   } catch (error) {
     console.log(error);
     next(error);
@@ -37,27 +33,29 @@ export const UserLogin = async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.status(400).json({ message: "All fields Required" });
-      return;
+      const error = new Error("All Fields Required!");
+      error.statusCode = 400;
+      return next(error);
     }
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.find({ email });
     if (!existingUser) {
-      res.status(404).json({ message: "User not found" });
-      return;
+      const error = new Error("User Not Found!");
+      error.statusCode = 404;
+      return next(error);
     }
-    555;
 
     // const isVerified = password === existingUser.password;
 
     if (!password === existingUser.password) {
-      const error = new Error("User not Authorized");
+      const error = new Error("User Not Authorized!");
       error.statusCode = 402;
       return next(error);
     }
+
     console.log(existingUser);
 
-    res.status(200).json({ message: "Welcome Back : ", data: existingUser });
+    res.status(200).json({ message: "Welcome Back!", data: existingUser });
   } catch (error) {
     console.log(error);
     next(error);
@@ -66,7 +64,8 @@ export const UserLogin = async (req, res, next) => {
 
 export const UserLogout = async (req, res, next) => {
   try {
-    res.status(200).json({ message: "Logout Successful" });
+    res.status(200).json({ message: "Logout Successfull!" });
+    return;
   } catch (error) {
     console.log(error);
     next(error);
@@ -75,17 +74,17 @@ export const UserLogout = async (req, res, next) => {
 
 export const UserUpdate = async (req, res, next) => {
   try {
-    const { fullName, email, phone } = req.body;
+    const { fullName, phone, email } = req.body;
 
-    if (!fullName || !email || !phone || !password) {
-      const error = new Error("All Fields Required");
+    if (!fullName || !email || !phone) {
+      const error = new Error("All Fields Required!");
       error.statusCode = 400;
       return next(error);
     }
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      const error = new Error("User not found");
+      const error = new Error("User Not Found!");
       error.statusCode = 404;
       return next(error);
     }
@@ -97,7 +96,7 @@ export const UserUpdate = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ message: "User Update Successfully", data: existingUser });
+      .json({ message: "User Updated Successfully!", data: existingUser });
   } catch (error) {
     console.log(error);
     next(error);
