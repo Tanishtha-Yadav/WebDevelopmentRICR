@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import api from "../config/Api";
 
 const Register = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     mobileNumber: "",
-    dateOfBirth: "",
     password: "",
-    confirmpassword: "",
+    confirmPassword: "",
   });
+
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState({});
 
@@ -23,10 +24,10 @@ const Register = () => {
       fullName: "",
       email: "",
       mobileNumber: "",
-      dateOfBirth: "",
       password: "",
-      confirmpassword: "",
+      confirmPassword: "",
     });
+    setValidationError({});
   };
 
   const validate = () => {
@@ -35,15 +36,13 @@ const Register = () => {
     if (formData.fullName.length < 3) {
       Error.fullName = "Name should be more than 3 characters";
     } else if (!/^[A-Za-z ]+$/.test(formData.fullName)) {
-      Error.fullName = "Only letters and spaces allowed";
+      Error.fullName = "Only A–Z, a–z and spaces allowed";
     }
 
     if (
-      !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email
-      )
+      !/^[\w.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(formData.email)
     ) {
-      Error.email = "Invalid email format";
+      Error.email = "Use proper email format";
     }
 
     if (!/^[6-9]\d{9}$/.test(formData.mobileNumber)) {
@@ -54,19 +53,19 @@ const Register = () => {
     return Object.keys(Error).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     if (!validate()) {
-      setIsLoading(false);
       toast.error("Fill the form correctly");
+      setIsLoading(false);
       return;
     }
 
     try {
-      console.log(formData);
-      toast.success("Registration Successful");
+      const res = await api.post("/auth/register", formData);
+      toast.success(res.data.message);
       handleClearForm();
     } catch (error) {
       toast.error(error.message);
@@ -76,31 +75,26 @@ const Register = () => {
   };
 
   return (
-    <div
-      className="min-h-screen py-6 px-4"
-      style={{
-        background: "linear-gradient(to bottom right, #f7fafc, #5a9cb5)",
-      }}
-    >
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-(--color-background) py-6 px-4">
+      <div className="max-w-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2 text-[#1f2a30]">
+          <h1 className="text-4xl font-bold text-(--color-text) mb-2">
             Registration
           </h1>
-          <p className="text-lg opacity-80 text-[#1f2a30]">
-            You are 1 step away to fulfill your cravings
+          <p className="text-lg text-(--color-text) opacity-70">
+            You are 1 step away to stop your cravings
           </p>
         </div>
 
-        {/* Form */}
+        {/* Form Container */}
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
           <form
             onSubmit={handleSubmit}
             onReset={handleClearForm}
             className="p-8"
           >
-            <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-4 mb-10">
               {/* Full Name */}
               <div>
                 <input
@@ -109,11 +103,11 @@ const Register = () => {
                   placeholder="Full Name"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 rounded-lg outline-none
-                  border-[#5a9cb5] focus:border-[#4a8aa2]"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
+                  focus:outline-none focus:border-(--color-primary) transition"
                 />
                 {validationError.fullName && (
-                  <span className="text-xs text-[#fa6868]">
+                  <span className="text-xs text-(--color-accent)">
                     {validationError.fullName}
                   </span>
                 )}
@@ -126,8 +120,8 @@ const Register = () => {
                 placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 rounded-lg outline-none
-                border-[#5a9cb5] focus:border-[#4a8aa2]"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
+                focus:outline-none focus:border-(--color-primary) transition"
               />
 
               {/* Mobile */}
@@ -138,63 +132,51 @@ const Register = () => {
                 maxLength="10"
                 value={formData.mobileNumber}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 rounded-lg outline-none
-                border-[#5a9cb5] focus:border-[#4a8aa2]"
-              />
-
-              {/* DOB */}
-              <input
-                type="date"
-                name="dateOfBirth"
-                value={formData.dateOfBirth}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border-2 rounded-lg outline-none
-                border-[#5a9cb5] focus:border-[#4a8aa2]"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
+                focus:outline-none focus:border-(--color-primary) transition"
               />
 
               {/* Password */}
               <input
                 type="password"
                 name="password"
-                placeholder="Enter Password"
+                placeholder="Create Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 rounded-lg outline-none
-                border-[#5a9cb5] focus:border-[#4a8aa2]"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
+                focus:outline-none focus:border-(--color-primary) transition"
               />
 
               {/* Confirm Password */}
               <input
                 type="password"
-                name="confrimpassword"
+                name="confirmPassword"
                 placeholder="Confirm Password"
-                value={formData.confirmpassword}
+                value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 rounded-lg outline-none
-                border-[#5a9cb5] focus:border-[#4a8aa2]"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
+                focus:outline-none focus:border-(--color-primary) transition"
               />
             </div>
 
             {/* Buttons */}
-            <div className="flex gap-4 pt-8 border-t mt-8">
+            <div className="flex gap-4 pt-8 border-t border-gray-200">
               <button
                 type="submit"
                 disabled={isLoading}
-                style={{
-                  background: "linear-gradient(to right, #5a9cb5, #4a8aa2)",
-                }}
-                className="flex-1 text-white font-bold py-4 px-6 rounded-lg
-                transition transform hover:scale-105 shadow-lg"
+                className="flex-1 bg-(--color-primary) text-white font-bold
+                py-4 px-6 rounded-lg hover:bg-(--color-primary-hover)
+                transition duration-300 transform hover:scale-105 shadow-lg"
               >
-                Submit Registration
+                {isLoading ? "Registering..." : "Submit Registration"}
               </button>
 
               <button
                 type="reset"
-                className="flex-1 font-bold py-4 px-6 rounded-lg
-                bg-[#face68] hover:bg-[#faac68]
-                text-[#1f2a30]
-                transition transform hover:scale-105"
+                className="flex-1 bg-(--color-secondary) text-(--color-text)
+                font-bold py-4 px-6 rounded-lg
+                hover:bg-(--color-secondary-hover)
+                transition duration-300 transform hover:scale-105"
               >
                 Clear Form
               </button>
@@ -203,7 +185,7 @@ const Register = () => {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-sm mt-8 text-[#1f2a30] opacity-70">
+        <p className="text-center text-(--color-text) opacity-60 mt-8 text-sm">
           All fields are mandatory. We respect your privacy.
         </p>
       </div>
