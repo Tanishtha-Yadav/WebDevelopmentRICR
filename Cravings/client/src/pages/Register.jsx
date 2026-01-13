@@ -40,7 +40,9 @@ const Register = () => {
     }
 
     if (
-      !/^[\w.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(formData.email)
+      !/^[\w.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
+        formData.email
+      )
     ) {
       Error.email = "Use proper email format";
     }
@@ -104,7 +106,7 @@ const Register = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
-                  focus:outline-none focus:border-(--color-primary) transition"
+                  focus:outline-none focus:border-(--color-primary) transition disabled:cursor-not-allowed disabled:bg-gray-200"
                 />
                 {validationError.fullName && (
                   <span className="text-xs text-(--color-accent)">
@@ -121,7 +123,7 @@ const Register = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
-                focus:outline-none focus:border-(--color-primary) transition"
+                focus:outline-none focus:border-(--color-primary) transition disabled:cursor-not-allowed disabled:bg-gray-200"
               />
 
               {/* Mobile */}
@@ -133,7 +135,7 @@ const Register = () => {
                 value={formData.mobileNumber}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
-                focus:outline-none focus:border-(--color-primary) transition"
+                focus:outline-none focus:border-(--color-primary) transition disabled:cursor-not-allowed disabled:bg-gray-200"
               />
 
               {/* Password */}
@@ -144,7 +146,7 @@ const Register = () => {
                 value={formData.password}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
-                focus:outline-none focus:border-(--color-primary) transition"
+                focus:outline-none focus:border-(--color-primary) transition disabled:cursor-not-allowed disabled:bg-gray-200"
               />
 
               {/* Confirm Password */}
@@ -155,30 +157,30 @@ const Register = () => {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
-                focus:outline-none focus:border-(--color-primary) transition"
+                focus:outline-none focus:border-(--color-primary) transition disabled:cursor-not-allowed disabled:bg-gray-200"
               />
             </div>
 
             {/* Buttons */}
             <div className="flex gap-4 pt-8 border-t border-gray-200">
               <button
+                type="reset"
+                disabled={isLoading}
+                className="flex-1 bg-(--color-secondary) text-(--color-text)
+                font-bold py-4 px-6 rounded-lg
+                hover:bg-(--color-secondary-hover)
+                transition duration-300 transform hover:scale-105 disabled:bg-gray-300 disabled:scale-100 disabled:cursor-not-allowed"
+              >
+                Clear Form
+              </button>
+              <button
                 type="submit"
                 disabled={isLoading}
                 className="flex-1 bg-(--color-primary) text-white font-bold
                 py-4 px-6 rounded-lg hover:bg-(--color-primary-hover)
-                transition duration-300 transform hover:scale-105 shadow-lg"
+                transition duration-300 transform hover:scale-105 shadow-lg  disabled:bg-gray-300 disabled:scale-100 disabled:cursor-not-allowed"
               >
                 {isLoading ? "Registering..." : "Submit Registration"}
-              </button>
-
-              <button
-                type="reset"
-                className="flex-1 bg-(--color-secondary) text-(--color-text)
-                font-bold py-4 px-6 rounded-lg
-                hover:bg-(--color-secondary-hover)
-                transition duration-300 transform hover:scale-105"
-              >
-                Clear Form
               </button>
             </div>
           </form>
