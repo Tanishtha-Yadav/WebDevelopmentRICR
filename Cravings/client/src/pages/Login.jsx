@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../config/Api";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,45 +10,21 @@ const Login = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [validationError, setValidationError] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };w
+  };
 
   const handleClearForm = () => {
     setFormData({
       email: "",
       password: "",
     });
-    setValidationError({});
-  };
-
-  const validate = () => {
-    let Error = {};
-
-    if (
-      !/^[\w.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email
-      )
-    ) {
-      Error.email = "Use proper email format";
-    }
-
-    setValidationError(Error);
-    return Object.keys(Error).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    if (!validate()) {
-      toast.error("Fill the form correctly");
-      setIsLoading(false);
-      return;
-    }
 
     try {
       const res = await api.post("/auth/login", formData);
@@ -116,6 +93,12 @@ const Login = () => {
                 >
                   Login
                 </button>
+              </div>
+              <div className="text-center mt-3">
+                <span className="mr-2">Don't have an account?</span>
+                <Link to={"/register"} className="text-blue-600 font-bold">
+                  Register
+                </Link>
               </div>
             </form>
           </div>
