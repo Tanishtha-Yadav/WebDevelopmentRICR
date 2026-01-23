@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import EditProfileModal from "./modals/EditProfileModal";
 
 const UserProfile = () => {
-  return (
-    <div>UserProfile</div>
-  )
-}
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const user = { useAuth };
 
-export default UserProfile
+  return (
+    <>
+      <div className="flex gap-10">
+        <div>
+          <span>Name:</span>
+          <span>{user.fullName}</span>
+        </div>
+
+        <div>
+          <span>Email:</span>
+          <span>{user.email}</span>
+        </div>
+        <div>
+          <span>Phone:</span>
+          <span>{user.mobileNumber}</span>
+        </div>
+
+        <button
+          className="border px-5 py-2 bg-yellow-300"
+          onClick={() => setIsEditProfileModalOpen(true)}
+        >
+          Edit Profile
+        </button>
+      </div>
+
+      {isEditProfileModalOpen && (
+        <EditProfileModal onClose={() => setIsEditProfileModalOpen(false)} />
+      )}
+    </>
+  );
+};
+
+export default UserProfile;

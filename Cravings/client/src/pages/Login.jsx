@@ -4,11 +4,11 @@ import api from "../config/Api";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+
 const Login = () => {
+  const { setUser, setIslogin } = useAuth();
 
-  //const {setUser,setIslogin}
-
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -30,10 +30,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
+      setUser(res.data.data);
+      setIslogin(true);
+      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
       navigate("/user-dashboard");
     } catch (error) {
@@ -89,15 +93,20 @@ const Login = () => {
               </div>
 
               {/* Buttons */}
-              <div className="flex gap-4 pt-8 border-t border-gray-200">
+              <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
+                <button
+                  type="reset"
+                  disabled={isLoading}
+                  className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                >
+                  Clear Form
+                </button>
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="flex-1 bg-(--color-secondary) text-(--text-color) font-bold
-                py-4 px-6 rounded-lg hover:bg-(--color-secondary-hover)
-                transition duration-300 transform hover:scale-105 shadow-lg  disabled:bg-gray-300 disabled:scale-100 disabled:cursor-not-allowed"
+                  className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300  disabled:cursor-not-allowed"
                 >
-                  Login
+                  {isLoading ? "loading.." : "Login"}
                 </button>
               </div>
               <div className="text-center mt-3">

@@ -4,6 +4,7 @@ import { genToken } from "../utils/authTokens.js";
 
 export const UserRegister = async (req, res, next) => {
   try {
+    console.log(req.body);
     // accept data from frontend
     const { fullName, email, mobileNumber, password } = req.body;
 
@@ -69,7 +70,7 @@ export const UserLogin = async (req, res, next) => {
     }
 
     // token generation will be done here
-    await genToken(existingUser, res);
+    genToken(existingUser, res);
 
     //send message to frontend
     res.status(200).json({ message: "Login Successfull", data: existingUser });
