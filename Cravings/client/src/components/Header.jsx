@@ -39,12 +39,7 @@ const Header = () => {
         </div>
         <div className="flex gap-4">
           {isLogin ? (
-            <div
-              className="text-red-500 cursor-pointer"
-              onClick={() => navigate("/user-dashborad")}
-            >
-              {user.fullName}
-            </div>
+            <span className="text-red-500">{user.fullName}</span>
           ) : (
             <>
               <button
@@ -59,9 +54,6 @@ const Header = () => {
               >
                 Register
               </button>
-              {isLogin ? (
-                <span className="text-red-500">{user.fullName}</span>
-              ) :  }
             </>
           )}
         </div>

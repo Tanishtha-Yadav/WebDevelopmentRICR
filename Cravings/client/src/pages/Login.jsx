@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../config/Api";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const { setUser, setIslogin } = useAuth();
+  const { setUser, setIsLogin } = useAuth();
 
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -32,16 +31,18 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
+    console.log(formData);
     try {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
       setUser(res.data.data);
-      setIslogin(true);
-      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
+      setIsLogin(true);
+      sessionStorage.setItem("CravingUser",JSON.stringify(res.data.data))
       handleClearForm();
       navigate("/user-dashboard");
     } catch (error) {
-      toast.error(error.message);
+      console.log(error);
+      toast.error(error?.response?.data?.message || "Unknown Error");
     } finally {
       setIsLoading(false);
     }
@@ -49,16 +50,16 @@ const Login = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-(--color-background) p-6 px-4">
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4">
         <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-(--color-text) mb-2">
-              Login
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              Welcome Back
             </h1>
-            <p className="text-lg text-(--color-text) opacity-70">
-              Please login to your account below
-            </p>
+            {/* <p className="text-lg text-gray-600">
+              You are 1 step away to stop your Cavings
+            </p> */}
           </div>
 
           {/* Form Container */}
@@ -68,31 +69,34 @@ const Login = () => {
               onReset={handleClearForm}
               className="p-8"
             >
-              <div className="space-y-4 mb-10">
-                {/* Email */}
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
-                focus:outline-none focus:border-(--color-primary) transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                />
+              {/* Personal Information */}
+              <div className="mb-10">
+                <div className="space-y-4">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    disabled={isLoading}
+                    className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                  />
 
-                {/* Password */}
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Create Password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg
-                focus:outline-none focus:border-(--color-primary) transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                />
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    placeholder="Create Password"
+                    onChange={handleChange}
+                    required
+                    disabled={isLoading}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                  />
+                </div>
               </div>
 
-              {/* Buttons */}
+              {/* Submit Button */}
               <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
                 <button
                   type="reset"
@@ -109,18 +113,12 @@ const Login = () => {
                   {isLoading ? "loading.." : "Login"}
                 </button>
               </div>
-              <div className="text-center mt-3">
-                <span className="mr-2">Don't have an account?</span>
-                <Link to={"/register"} className="text-blue-600 font-bold">
-                  Register
-                </Link>
-              </div>
             </form>
           </div>
 
-          {/* Footer */}
-          <p className="text-center text-(--color-text) opacity-60 mt-8 text-sm">
-            We respect your privacy.
+          {/* Footer Note */}
+          <p className="text-center text-gray-600 mt-8 text-sm">
+            All fields marked are mandatory. We respect your privacy.
           </p>
         </div>
       </div>
