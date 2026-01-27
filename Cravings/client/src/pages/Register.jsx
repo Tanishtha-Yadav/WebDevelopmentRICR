@@ -30,7 +30,7 @@ const Register = () => {
       confirmPassword: "",
       role: "",
     });
-    setValidationError({});
+  
   };
 
   const validate = () => {
@@ -79,7 +79,8 @@ const Register = () => {
       toast.success(res.data.message);
       handleClearForm();
     } catch (error) {
-      toast.error(error.message);
+      console.log(error)
+      toast.error(error.respon?.data?.message || "Unknown Error");
     } finally {
       setIsLoading(false);
     }
