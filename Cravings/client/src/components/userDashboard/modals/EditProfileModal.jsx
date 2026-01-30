@@ -8,6 +8,20 @@ const EditProfileModal = ({ onClose }) => {
     fullName: user.fullName,
     email: user.email,
     mobileNumber: user.mobileNumber,
+    gender: user.gender,
+    dob: user.dob,
+    address: user.address,
+    city: user.city,
+    pin: user.pin,
+    documents: {
+      uidai: user.documents.uidai,               
+      pan: user.documents.pan,
+    },
+    paymentDetails: {
+      upi: user.paymentDetails.upi,
+      account_number: user.paymentDetails.account_number,
+      ifs_Code: user.paymentDetails.ifs_Code,
+    },
   });
 
   const handleSubmit = async (e) => {

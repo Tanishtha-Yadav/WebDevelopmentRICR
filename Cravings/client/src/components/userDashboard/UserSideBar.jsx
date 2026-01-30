@@ -8,7 +8,7 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useAuth } from "../../context/AuthContext";
 
 const UserSideBar = ({ active, setActive, collapse, setCollapse }) => {
-  const { setUser, setIsLogin } = { useAuth };
+  const { setUser, setIsLogin } = useAuth();
   const menuItems = [
     { key: "overview", title: "Overview", icon: <MdOutlineAnalytics /> },
     { key: "profile", title: "Profile", icon: <RiProfileFill /> },
@@ -21,7 +21,14 @@ const UserSideBar = ({ active, setActive, collapse, setCollapse }) => {
     { key: "helpdesk", title: "Help Desk", icon: <SiHelpdesk /> },
   ];
 
-    const handleLogout = async () => {
+  const logoutItem = {
+  key: "logout",
+  title: "Logout",
+  icon: <RiLogoutBoxRLine />,
+};
+
+
+  const handleLogout = async () => {
     try {
       const res = await api.get("/auth/logout");
       toast.success(res.data.message);
@@ -33,10 +40,11 @@ const UserSideBar = ({ active, setActive, collapse, setCollapse }) => {
     }
   };
   return (
-    <div>
-      <div className="p-3 overflow-hidden transition-all duration-300">
+    <div className="h-full flex flex-col">
+      {/* Header + Menu */}
+      <div className="flex-1 p-3 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-3 mb-6">
           <button
             onClick={() => setCollapse(!collapse)}
             className="p-2 text-xl hover:scale-110"
@@ -45,7 +53,7 @@ const UserSideBar = ({ active, setActive, collapse, setCollapse }) => {
           </button>
 
           {!collapse && (
-            <span className="font-bold text-lg text-nowrap">
+            <span className="font-bold text-lg whitespace-nowrap">
               User Dashboard
             </span>
           )}
@@ -53,28 +61,42 @@ const UserSideBar = ({ active, setActive, collapse, setCollapse }) => {
 
         <hr />
 
-        {/* Menu */}
-        <div className="grid gap-3 mt-4">
+        {/* Menu Items */}
+        <div className="flex flex-col gap-2 mt-6">
           {menuItems.map((item) => (
             <button
               key={item.key}
               onClick={() => setActive(item.key)}
-              className={`flex gap-3 items-center p-3 rounded-xl transition-all
+              className={`flex items-center gap-3 p-3 rounded-xl w-full transition-all
               ${
                 active === item.key
                   ? "bg-(--color-secondary) text-(-color-text)"
                   : "hover:bg-gray-300"
               }`}
             >
-              <span className="text-xl">{item.icon}</span>
-              {!collapse && <span>{item.title}</span>}
+              <span className="text-xl w-6 flex justify-center">
+                {item.icon}
+              </span>
+
+              {!collapse && (
+                <span className="whitespace-nowrap">{item.title}</span>
+              )}
             </button>
           ))}
         </div>
       </div>
-      <div className="grid gap-3 mt-4">
-        <button className="flex gap-3 items-center p-3 rounded-xl transition-all hover:bg-gray-300">
-          <RiLogoutBoxRLine /> Logout
+
+      {/* Logout */}
+      <div className="p-3 border-t">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 p-3 rounded-xl w-full transition-all hover:bg-gray-300"
+        >
+          <span className="text-xl w-6 flex justify-center">
+            <RiLogoutBoxRLine />
+          </span>
+
+          {!collapse && <span>Logout</span>}
         </button>
       </div>
     </div>

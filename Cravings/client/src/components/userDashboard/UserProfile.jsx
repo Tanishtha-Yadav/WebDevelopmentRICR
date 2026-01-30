@@ -7,19 +7,27 @@ import api from "../../config/Api";
 import toast from "react-hot-toast";
 
 const UserProfile = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const [preview, setPreview] = useState("");
   const [photo, setPhoto] = useState("");
 
   const changePhoto = async () => {
     const form_Data = new FormData();
-
     form_Data.append("image", photo);
-    form_Data.append("imageURL", preview);
 
     try {
       const res = await api.patch("/user/changePhoto", form_Data);
+      toast.success(res.data.message);
+
+      setUser(res.data.data); // update context
+      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
+      // res.data.data should contain the updated user object with new photo URL
+      if (res.data.data) {
+        setPreview(res.data.data.photo.url); // update preview
+        setUser(res.data.data); // update context
+        sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
+      }
 
       toast.success(res.data.message);
     } catch (error) {
@@ -84,7 +92,7 @@ const UserProfile = () => {
               Edit
             </button>
             <button className="px-4 py-2 rounded bg-(--color-secondary) text-white">
-              Reset
+              Reset Password
             </button>
           </div>
         </div>
