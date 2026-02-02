@@ -5,31 +5,32 @@ import UserImage from "../../assets/userImage.jpg";
 import { FaCamera } from "react-icons/fa";
 import api from "../../config/Api";
 import toast from "react-hot-toast";
+import ResetPasswordModal from "./modals/ResetPasswordModal";
 
 const UserProfile = () => {
   const { user, setUser } = useAuth();
-  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-  const [preview, setPreview] = useState("");
-  const [photo, setPhoto] = useState("");
+  //console.log(user);
 
-  const changePhoto = async () => {
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] =
+    useState(false);
+  const [preview, setPreview] = useState("");
+
+  const changePhoto = async (photo) => {
     const form_Data = new FormData();
+
+    // console.log("Printing photo", photo);
+
     form_Data.append("image", photo);
+    // form_Data.append("imageURL", preview);
 
     try {
       const res = await api.patch("/user/changePhoto", form_Data);
+
       toast.success(res.data.message);
 
-      setUser(res.data.data); // update context
+      setUser(res.data.data);
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
-      // res.data.data should contain the updated user object with new photo URL
-      if (res.data.data) {
-        setPreview(res.data.data.photo.url); // update preview
-        setUser(res.data.data); // update context
-        sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
-      }
-
-      toast.success(res.data.message);
     } catch (error) {
       toast.error(error?.response?.data?.message || "Unknown Error");
     }
@@ -38,11 +39,10 @@ const UserProfile = () => {
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     const newPhotoURL = URL.createObjectURL(file);
-    //console.log(newPhotoURL);
+    console.log(newPhotoURL);
     setPreview(newPhotoURL);
     setTimeout(() => {
-      setPhoto(file);
-      changePhoto();
+      changePhoto(file);
     }, 5000);
   };
 
@@ -77,22 +77,28 @@ const UserProfile = () => {
             </div>
             <div>
               <div className="text-3xl text-(--color-primary) font-bold">
-                {user.fullName}
+                {user.fullName || "User Name"}
               </div>
               <div className="text-gray-600 text-lg font-semibold">
-                {user.email}
+                {user.email || "user@example.com"}
               </div>
               <div className="text-gray-600 text-lg font-semibold">
-                {user.mobileNumber}
+                {user.mobileNumber || "XXXXXXXXXX"}
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <button className="px-4 py-2 rounded bg-(--color-secondary) text-white">
+            <button
+              className="px-4 py-2 rounded bg-(--color-secondary) text-white"
+              onClick={() => setIsEditProfileModalOpen(true)}
+            >
               Edit
             </button>
-            <button className="px-4 py-2 rounded bg-(--color-secondary) text-white">
-              Reset Password
+            <button
+              className="px-4 py-2 rounded bg-(--color-secondary) text-white"
+              onClick={() => setIsResetPasswordModalOpen(true)}
+            >
+              Reset password
             </button>
           </div>
         </div>
@@ -100,6 +106,12 @@ const UserProfile = () => {
 
       {isEditProfileModalOpen && (
         <EditProfileModal onClose={() => setIsEditProfileModalOpen(false)} />
+      )}
+
+      {isResetPasswordModalOpen && (
+        <ResetPasswordModal
+          onClose={() => setIsResetPasswordModalOpen(false)}
+        />
       )}
     </>
   );

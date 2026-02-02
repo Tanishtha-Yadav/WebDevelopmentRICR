@@ -10,14 +10,14 @@ const Header = () => {
   const handleNavigate = () => {
     switch (role) {
       case "manager": {
-        navigate("/restaurant-dashboard");
+        navigate("/resturant-dashboard");
         break;
       }
       case "partner": {
         navigate("/rider-dashboard");
         break;
       }
-      case "user": {
+      case "customer": {
         navigate("/user-dashboard");
         break;
       }
@@ -34,7 +34,11 @@ const Header = () => {
     <>
       <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center">
         <Link to={"/"}>
-          <img src={tranparentLogo} alt="" className="h-12 w-20 invert-100" />
+          <img
+            src={tranparentLogo}
+            alt=""
+            className="h-10 w-20 object-cover invert-100"
+          />
         </Link>
         <div className="flex gap-4">
           <Link
