@@ -49,7 +49,6 @@ const UserDashboard = () => {
           setCollapse={setCollapse}
         />
       </div>
-
       <div
         className={`border border-red-500 transition-all duration-300
         ${collapse ? "w-[calc(100%-70px)]" : "w-8/10"}`}
