@@ -19,7 +19,7 @@ const RestaurantDashboard = () => {
     if (!isLogin) {
       navigate("/login");
     }
-  });
+  }, [isLogin, navigate]);
 
   if (role !== "manager") {
     return (
@@ -40,9 +40,10 @@ const RestaurantDashboard = () => {
     <>
       <div className="w-full h-[90vh] flex">
         <div
-          className={`bg-(--color-background) duration-300 ${
+          className={`duration-300 ${
             isCollapsed ? "w-2/60" : "w-12/60"
           }`}
+          style={{ backgroundColor: 'var(--color-background)' }}
         >
           <RestaurantSideBar
             active={active}

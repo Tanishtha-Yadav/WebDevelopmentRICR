@@ -1,7 +1,10 @@
 import express from "express";
 import multer from "multer";
 
-import { RestaurantAddMenuItem , GetRestaurantMenuItem} from "../controllers/restaurantController.js";
+import {
+  RestaurantAddMenuItem,
+  GetRestaurantMenuItem,
+} from "../controllers/restaurantController.js";
 import { ManagerProtect, Protect } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -14,11 +17,6 @@ router.post(
   upload.array("itemImages", 5),
   RestaurantAddMenuItem,
 );
-router.get(
-  "/menuItems",
-  Protect,
-  ManagerProtect,
-  GetRestaurantMenuItem,
-);
+router.get("/menuItems", Protect, ManagerProtect, GetRestaurantMenuItem);
 
 export default router;

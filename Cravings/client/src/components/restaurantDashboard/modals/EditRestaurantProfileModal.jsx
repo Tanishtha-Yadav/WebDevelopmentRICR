@@ -299,7 +299,9 @@ const EditRestaurantProfileModal = ({ onClose }) => {
                     value={formData.restaurantName}
                     onChange={handleInputChange}
                     className={`w-full border rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      errors.restaurantName ? "border-red-500" : "border-gray-300"
+                      errors.restaurantName
+                        ? "border-red-500"
+                        : "border-gray-300"
                     }`}
                     placeholder="Enter restaurant name"
                   />

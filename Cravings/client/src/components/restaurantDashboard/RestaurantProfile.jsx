@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import EditRestaurantProfileModal from "./modals/EditRestaurantProfileModal";
 import UserImage from "../../assets/userImage.jpg";
-import {
-  FaCamera,
-  FaMapLocationDot,
-  FaWallet,
-} from "react-icons/fa6";
+import { FaCamera, FaMapLocationDot, FaWallet } from "react-icons/fa6";
 import { FaFileAlt } from "react-icons/fa";
 import { BiSolidBank } from "react-icons/bi";
 import api from "../../config/Api";

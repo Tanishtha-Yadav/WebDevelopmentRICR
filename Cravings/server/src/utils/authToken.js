@@ -12,7 +12,7 @@ export const genToken = (user, res) => {
 
     console.log(token);
 
-    res.cookie("Biscoff", token, {
+    res.cookie("parleG", token, {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
       secure: false,
@@ -35,7 +35,7 @@ export const genOtpToken = (user, res) => {
 
     console.log(token);
 
-    res.cookie("otpToken4", token, {
+    res.cookie("otpToken", token, {
       maxAge: 1000 * 60 * 10,
       httpOnly: true,
       secure: false,
