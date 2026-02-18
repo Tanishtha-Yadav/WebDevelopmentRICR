@@ -9,7 +9,7 @@ const ResetPasswordModal = ({ onClose }) => {
     newPassword: "",
     cfNewPassword: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -47,7 +47,7 @@ const ResetPasswordModal = ({ onClose }) => {
               onClick={() => onClose()}
               className="text-gray-600 hover:text-red-600 text-2xl transition"
             >
-              ⊗
+              X
             </button>
           </div>
 
@@ -139,7 +139,7 @@ const ResetPasswordModal = ({ onClose }) => {
               >
                 {loading ? (
                   <>
-                    <span className="animate-spin">⟳</span> Saving...
+                    <span className="animate-spin">Loading...</span>
                   </>
                 ) : (
                   "Save Changes"

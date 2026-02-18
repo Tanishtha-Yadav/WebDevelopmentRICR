@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../config/Api";
+import toast from "react-hot-toast";
 
 const OrderNow = () => {
   const [restaurants, setRestaurants] = useState();
@@ -34,7 +35,9 @@ const OrderNow = () => {
           </p>
         </div>
 
-        {restaurants ? (
+        {loading ? (
+          <div>Loading...</div>
+        ) : restaurants ? (
           <div>
             {restaurants.map((restaurant, idx) => (
               <div key={idx} className="border">

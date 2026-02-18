@@ -69,7 +69,7 @@ const ForgetPasswordModal = ({ onClose }) => {
               onClick={() => onClose()}
               className="text-gray-600 hover:text-red-600 text-2xl transition"
             >
-              ⊗
+              X
             </button>
           </div>
 

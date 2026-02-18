@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
 import api from "../../../config/Api";
 import toast from "react-hot-toast";
 
 const AddMenuItemModal = ({ onClose }) => {
-  const { user } = useAuth();
   const [formData, setFormData] = useState({
     itemName: "",
     description: "",
@@ -113,7 +111,7 @@ const AddMenuItemModal = ({ onClose }) => {
               onClick={handleClose}
               className="text-gray-600 hover:text-red-600 text-2xl transition"
             >
-              ⊗
+              X
             </button>
           </div>
 
@@ -371,7 +369,7 @@ const AddMenuItemModal = ({ onClose }) => {
               >
                 {loading ? (
                   <>
-                    <span className="animate-spin">⟳</span> Adding...
+                    <span className="animate-spin">Loading...</span>
                   </>
                 ) : (
                   "Add Menu Item"

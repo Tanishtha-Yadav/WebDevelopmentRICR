@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
 import api from "../../../config/Api";
 import toast from "react-hot-toast";
 
 const EditItemModal = ({ onClose, selectedItem }) => {
-  const { user } = useAuth();
   const [formData, setFormData] = useState({
     itemName: selectedItem?.itemName || "",
     description: selectedItem?.description || "",
@@ -112,7 +110,7 @@ const EditItemModal = ({ onClose, selectedItem }) => {
               onClick={handleClose}
               className="text-gray-600 hover:text-red-600 text-2xl transition"
             >
-              ⊗
+              X
             </button>
           </div>
 
@@ -370,7 +368,7 @@ const EditItemModal = ({ onClose, selectedItem }) => {
               >
                 {loading ? (
                   <>
-                    <span className="animate-spin">⟳</span> Updating...
+                    <span className="animate-spin">Loading...</span>
                   </>
                 ) : (
                   "Update Menu Item"

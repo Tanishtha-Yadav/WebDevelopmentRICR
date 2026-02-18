@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { FaEye, FaEdit } from "react-icons/fa";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
 import { ImBlocked } from "react-icons/im";
-import ViewItemModal from "./modals/ViewItemmodal";
+import ViewItemModal from "./modals/ViewItemModal";
 import EditItemModal from "./modals/EditItemModal";
 
 const RestaurantMenu = () => {
@@ -27,8 +27,10 @@ const RestaurantMenu = () => {
   };
 
   useEffect(() => {
-    if (!isAddItemModalOpen && !isEditItemModalOpen) fetchMenuItem();
-  }, [isAddItemModalOpen,isEditItemModalOpen]);
+    queueMicrotask(() => {
+      fetchMenuItem();
+    });
+  }, []);
   return (
     <>
       <div className="bg-gray-50 rounded-lg p-6 h-full overflow-y-auto">
@@ -118,7 +120,12 @@ const RestaurantMenu = () => {
       </div>
 
       {isAddItemModalOpen && (
-        <AddMenuItemModal onClose={() => setIsAddItemModalOpen(false)} />
+        <AddMenuItemModal
+          onClose={() => {
+            setIsAddItemModalOpen(false);
+            fetchMenuItem();
+          }}
+        />
       )}
       {isViewItemModalOpen && (
         <ViewItemModal
@@ -128,7 +135,10 @@ const RestaurantMenu = () => {
       )}
       {isEditItemModalOpen && (
         <EditItemModal
-          onClose={() => setIsEditItemModalOpen(false)}
+          onClose={() => {
+            setIsEditItemModalOpen(false);
+            fetchMenuItem();
+          }}
           selectedItem={selectedItem}
         />
       )}
